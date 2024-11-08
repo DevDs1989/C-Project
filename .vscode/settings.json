@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "stdbool.h": "c",
+    "algorithm": "c",
+    "format": "c",
+    "thread": "cpp"
+  }
+}
