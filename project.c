@@ -17,7 +17,7 @@ int main()
   char userGuess[10];
 
   int tries = 6;
-  
+
   FILE *dictFile;
   dictFile = fopen("dictionary.txt", "r");
   srand(time(NULL));
@@ -43,7 +43,7 @@ int main()
 
   while (!foundWord)
   {
-    fgets(randWord,sizeof(randWord),dictFile);
+    fgets(randWord, sizeof(randWord), dictFile);
     if (currentLine == randomLine)
     {
       fscanf(dictFile, "%s", randWord);
@@ -55,27 +55,25 @@ int main()
   printf("\nSize of Word: %d\n", strlen(randWord));
   printf("\n%d Tries\n", tries);
 
-for(int i = 0; i < tries; i++){
-  printf("\nEnter Your Guess:\n");
-  scanf("%s",userGuess);
-  if(gameLogic(randWord, userGuess)){
-    printf(GREEN "You Win" NORMAL);
-    fclose(dictFile);
-    return 0;
+  for (int i = 0; i < tries; i++)
+  {
+    printf("\nEnter Your Guess:\n");
+    scanf("%s", userGuess);
+    if (gameLogic(randWord, userGuess))
+    {
+      printf(GREEN "You Win" NORMAL);
+      fclose(dictFile);
+      return 0;
+    }
   }
-} 
   printf(RED "\nYou Lose\n" NORMAL);
   printf("\nCorrect Word was %s\n", randWord);
   fclose(dictFile);
 
-return 0;
+  return 0;
 }
 
-
-
-
-
-bool gameLogic(char* randWord, char* userGuess)
+bool gameLogic(char *randWord, char *userGuess)
 {
 
   // guessType key:
@@ -95,7 +93,7 @@ bool gameLogic(char* randWord, char* userGuess)
 
   for (int i = 0; i < strlen(userGuess); i++)
   {
-    guessType[i] = 0 ;
+    guessType[i] = 0;
     matchCondition[i] = false;
   }
 
@@ -110,41 +108,43 @@ bool gameLogic(char* randWord, char* userGuess)
     }
   }
 
-if(counter == 5) 
-{
-  winner = true;
-}
-else{
-     for (int i = 0; i < 5; i++)
+  if (counter == 5)
+  {
+    winner = true;
+  }
+  else
+  {
+    for (int i = 0; i < 5; i++)
     {
       if (guessType[i] == 0)
       {
         for (int j = 0; j < 5; j++)
         {
-          if (userGuess[i] == randWord[j] )
+          if (userGuess[i] == randWord[j])
           {
             guessType[i] = 2;
             matchCondition[j] = true;
+            counter++;
             break;
           }
         }
       }
-    }}
-    for (int i = 0; i < strlen(userGuess); i++)
-    {
-      if (guessType[i] == 0)
-      {
-        printf(RED "%c" NORMAL, userGuess[i] );
-      }
-       else if (guessType[i] == 1)
-      {
-        printf(GREEN "%c" NORMAL, userGuess[i] );
-      }
-       else if (guessType[i] == 2)
-      {
-        printf(YELLOW "%c" NORMAL, userGuess[i] );
-      }
-    
     }
-  return winner;
   }
+  for (int i = 0; i < strlen(userGuess); i++)
+  {
+    if (guessType[i] == 0)
+    {
+      printf(RED "%c" NORMAL, userGuess[i]);
+    }
+    else if (guessType[i] == 1)
+    {
+      printf(GREEN "%c" NORMAL, userGuess[i]);
+    }
+    else if (guessType[i] == 2)
+    {
+      printf(YELLOW "%c" NORMAL, userGuess[i]);
+    }
+  }
+  return winner;
+}
