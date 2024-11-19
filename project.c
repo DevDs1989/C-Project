@@ -124,7 +124,6 @@ bool gameLogic(char *randWord, char *userGuess)
           {
             guessType[i] = 2;
             matchCondition[j] = true;
-            counter++;
             break;
           }
         }
