@@ -120,7 +120,7 @@ bool gameLogic(char *randWord, char *userGuess)
       {
         for (int j = 0; j < 5; j++)
         {
-          if (userGuess[i] == randWord[j])
+          if (!matchCondition[j] && userGuess[i] == randWord[j])
           {
             guessType[i] = 2;
             matchCondition[j] = true;
