@@ -35,11 +35,11 @@ int main()
     printf("\nFile is empty\n");
   }
 
-  int randomLine = rand() % count + 1;
-  rewind(dictFile);
 
+  int randomLine = rand() % count + 1;
   int currentLine = 0;
   bool foundWord = false;
+  rewind(dictFile);
 
   while (!foundWord)
   {
@@ -61,7 +61,7 @@ int main()
     scanf("%s", userGuess);
     if (gameLogic(randWord, userGuess))
     {
-      printf(GREEN "You Win" NORMAL);
+      printf(GREEN "\nYou Win\n" NORMAL);
       fclose(dictFile);
       return 0;
     }
